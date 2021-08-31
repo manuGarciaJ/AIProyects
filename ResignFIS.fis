@@ -1,0 +1,73 @@
+[System]
+Name='ResignFIS'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=27
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='CurrentContract'
+Range=[0 5]
+NumMFs=3
+MF1='NearDone':'gaussmf',[1.062 -2.776e-17]
+MF2='LooselyTiedUp':'gaussmf',[1 2.516]
+MF3='TiedUp':'gaussmf',[1.062 5]
+
+[Input2]
+Name='Finances'
+Range=[0 1]
+NumMFs=3
+MF1='Illiquid':'gaussmf',[0.2123 0]
+MF2='Regular':'gaussmf',[0.2123 0.5]
+MF3='Solvent':'gaussmf',[0.2123 1]
+
+[Input3]
+Name='Performance'
+Range=[0 1]
+NumMFs=3
+MF1='Low':'gaussmf',[0.2123 0]
+MF2='Medium':'gaussmf',[0.2123 0.5]
+MF3='High':'gaussmf',[0.2123 0.997354497354497]
+
+[Output1]
+Name='Desicion'
+Range=[0 1]
+NumMFs=3
+MF1='sell':'gaussmf',[0.212 -0.0105865608465608]
+MF2='wait':'trimf',[0.206 0.496 0.78968253968254]
+MF3='resign':'gauss2mf',[0.129 0.831201058201058 0.129 1.02620105820106]
+
+[Rules]
+1 1 1, 1 (1) : 1
+1 1 2, 1 (1) : 1
+1 1 3, 2 (1) : 1
+1 2 1, 1 (1) : 1
+1 2 2, 2 (1) : 1
+1 2 3, 3 (1) : 1
+1 3 1, 1 (1) : 1
+1 3 2, 3 (1) : 1
+1 3 3, 3 (1) : 1
+2 1 1, 1 (1) : 1
+2 1 2, 2 (1) : 1
+2 1 3, 3 (1) : 1
+2 2 1, 2 (1) : 1
+2 2 2, 2 (1) : 1
+2 2 3, 3 (1) : 1
+2 3 1, 2 (1) : 1
+2 3 2, 3 (1) : 1
+2 3 3, 3 (1) : 1
+3 1 1, 1 (1) : 1
+3 1 2, 2 (1) : 1
+3 1 3, 2 (1) : 1
+3 2 1, 2 (1) : 1
+3 2 2, 2 (1) : 1
+3 2 3, 2 (1) : 1
+3 3 1, 2 (1) : 1
+3 3 2, 2 (1) : 1
+3 3 3, 2 (1) : 1
